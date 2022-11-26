@@ -5,10 +5,16 @@ frameworkVersion: '3'
 
 provider:
   name: aws
+  region: us-east-2
   runtime: nodejs14.x
 
 functions:
-  api:
-    handler: handler.handler
-    events:
-      - httpApi: '*'
+  main:
+    memorySize: 256
+    timeout: 90
+    handler: index.main
+    description: Chainlink Lambda Raspberry Pi Sense Hat Data
+
+plugins:
+  - serverless-esbuild
+  - serverless-prune-plugin
