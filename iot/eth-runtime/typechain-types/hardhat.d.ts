@@ -45,9 +45,9 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ENSResolver__factory>;
     getContractFactory(
-      name: "ConsumePi",
+      name: "Consumer",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ConsumePi__factory>;
+    ): Promise<Contracts.Consumer__factory>;
 
     getContractAt(
       name: "ChainlinkClient",
@@ -90,10 +90,10 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.ENSResolver>;
     getContractAt(
-      name: "ConsumePi",
+      name: "Consumer",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ConsumePi>;
+    ): Promise<Contracts.Consumer>;
 
     // default types
     getContractFactory(

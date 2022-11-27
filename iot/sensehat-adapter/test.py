@@ -8,6 +8,14 @@ raspberry_payload = {
     }   
 }
 
+
+pi_temp_payload = {
+    "id": 1, 
+    "data": {
+        "sensorMetric": "pressure"
+    }   
+}
+
 headers = { "Content-Type": "application/json"}
 
 
@@ -16,7 +24,12 @@ headers = { "Content-Type": "application/json"}
 # print(r.json())
 
 
-
-r = requests.post("https://yiqiqjroo2.execute-api.us-east-1.amazonaws.com", json=raspberry_payload, headers=headers)
+# Sense Hat Lambda
+r = requests.post("https://5bqtjwld9f.execute-api.us-east-1.amazonaws.com", json=raspberry_payload)
 print(r.status_code)
 print(r.json())
+
+
+# r = requests.post("https://1om6em92sb.execute-api.us-east-1.amazonaws.com", json=raspberry_payload, headers=headers)
+# print(r.status_code)
+# print(r.json())

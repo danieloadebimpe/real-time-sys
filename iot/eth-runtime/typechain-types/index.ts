@@ -22,5 +22,5 @@ export type { PointerInterface } from "./@chainlink/contracts/src/v0.8/interface
 export { PointerInterface__factory } from "./factories/@chainlink/contracts/src/v0.8/interfaces/PointerInterface__factory";
 export type { ENSResolver } from "./@chainlink/contracts/src/v0.8/vendor/ENSResolver";
 export { ENSResolver__factory } from "./factories/@chainlink/contracts/src/v0.8/vendor/ENSResolver__factory";
-export type { ConsumePi } from "./contracts/Consumer.sol/ConsumePi";
-export { ConsumePi__factory } from "./factories/contracts/Consumer.sol/ConsumePi__factory";
+export type { Consumer } from "./contracts/Consumer";
+export { Consumer__factory } from "./factories/contracts/Consumer__factory";
