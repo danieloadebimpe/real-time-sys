@@ -1,0 +1,94 @@
+{% extends 'template.html' %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bidpage.css' %}">
+{% endblock %}
+
+{% block body %}
+	<div id="content-wrapper">
+
+
+		<div class="column">
+			<img id=featured src="{{ image }}">
+
+			<div id="slide-wrapper" >
+				{% load static %}
+				<img id="slideLeft" class="arrow" src="{% static 'image/arrow-left.png' %}">
+
+				<div id="slider">
+					{% load static %}
+					<img class="thumbnail active" src="{{ image }}">
+					<img class="thumbnail" src="{{ image }}">
+					<img class="thumbnail" src="{{ image }}">
+
+					<img class="thumbnail" src="{{ image }}">
+					<img class="thumbnail" src="{{ image }}">
+					<img class="thumbnail" src="{{ image }}">
+					<img class="thumbnail" src="{{ image }}">
+				</div>
+
+				<img id="slideRight" class="arrow" src="{% static 'image/arrow-right.png' %}">
+			</div>
+		</div>
+
+		<div class="column">
+			<h1>{{ name }}</h1>
+			<hr>
+			<h3>current bid:&nbsp&nbsp&nbsp&nbsp${{ price }}</h3>
+
+			<p>Item Description:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp {{ description }} </p>
+
+				<b>{{error}}</b>
+
+		<form method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+			<div class="input-group mb-3">
+  				<input id="newBid" name="newBid" type="number" class="form-control" placeholder={{ minBid }} aria-label="ENTER BID" aria-describedby="basic-addon2" required>
+				<div class="input-group-append">
+					<span class="input-group-text" id="basic-addon2"><input id="submit" class="btn btn-primary" type="submit" value="PLACE BID" /></span>
+				</div>
+				<br><b>{{notification}}</b>
+			</div>
+		</form>
+		</div>
+
+
+	</div>
+
+	<script type="text/javascript">
+		let thumbnails = document.getElementsByClassName('thumbnail')
+
+		let activeImages = document.getElementsByClassName('active')
+
+		for (var i=0; i < thumbnails.length; i++){
+
+			thumbnails[i].addEventListener('mouseover', function(){
+				console.log(activeImages)
+
+				if (activeImages.length > 0){
+					activeImages[0].classList.remove('active')
+				}
+
+
+				this.classList.add('active')
+				document.getElementById('featured').src = this.src
+			})
+		}
+
+
+		let buttonRight = document.getElementById('slideRight');
+		let buttonLeft = document.getElementById('slideLeft');
+
+		buttonLeft.addEventListener('click', function(){
+			document.getElementById('slider').scrollLeft -= 180
+		})
+
+		buttonRight.addEventListener('click', function(){
+			document.getElementById('slider').scrollLeft += 180
+		})
+
+
+	</script>
+
+{% endblock %}

@@ -11,7 +11,7 @@ export const getSensorData = async (inputData: SensorPayload) =>  {
         //console.log("True")
         try {
             const { data }: AxiosResponse<WeatherMetricResponse> = await axios
-                .get(`https://c9f5-73-182-155-254.ngrok.io/pi/${argToPost}`);
+                .get(`https://a72e-73-182-155-254.ngrok.io/pi/${argToPost}`);
             const responseArg = argToPost;
             if (responseArg === 'temperature') {
                 //console.info(data[weatherParamEnum.TEMPERATURE])
@@ -25,7 +25,6 @@ export const getSensorData = async (inputData: SensorPayload) =>  {
                 //console.info(data[weatherParamEnum.PRESSURE]);
                 return data[weatherParamEnum.PRESSURE];
             }
-          
         } catch (err) {
             console.error(err)
             return {}
@@ -37,13 +36,15 @@ export const getSensorData = async (inputData: SensorPayload) =>  {
 
 }
 
-export const main: Handler = async (event, context) => {
+export const main: Handler = async (event, context, callback) => {
     const inputPayload = event.data;
     try {
         const response = await getSensorData(inputPayload);
         //console.info(response);
         return {
-            piData: response
+            body: JSON.stringify(response),
+            isBase64Encoded: false
+         
         }
     } catch (err) {
         console.error(err);

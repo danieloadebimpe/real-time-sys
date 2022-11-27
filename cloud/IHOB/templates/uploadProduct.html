@@ -1,0 +1,50 @@
+{% extends 'template.html' %}
+{% block body %}
+
+<div class="form-style-5">
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset>
+        <legend><span class="number">1</span> Upload Your Product Info</legend>
+        <input type="text" name="productName" placeholder="Product Name *" required>
+        <input type="number" step="1" name="price" placeholder="Product Price *" required>
+        <textarea name="description" placeholder="Product Description" required></textarea>
+        <label for="job">Category:</label>
+        <select id="job" name="category">
+            <optgroup label="WEB3">
+                <option value="NFT">NFT</option>
+                <option value="BlockChain">BlockChain</option>
+                <option value="Metaverse">Metaverse</option>
+            </optgroup>
+
+            <optgroup label="Real Estate">
+                <option value="Land">Land</option>
+                <option value="COOPERATION">COOPERATION</option>
+                <option value="Planet">Planet</option>
+            </optgroup>
+
+            <optgroup label="Property">
+                <option value="Vehicle">Vehicle</option>
+                <option value="Camera">Camera</option>
+                <option value="Lenses">Lenses</option>
+                <option value="Computer">Computer</option>
+                <option value="Collab">Collab</option>
+            </optgroup>
+
+        </select>
+
+    </fieldset>
+
+    <fieldset>
+        <legend><span class="number">2</span> Additional Info</legend>
+        <p>Upload your product image</p>
+        <input type="file" name="productPicture" required>
+    </fieldset>
+
+    <input type="submit" value="Sumbit">
+
+        <b>{{error}}</b>
+    </form>
+</div>
+
+{% endblock %}

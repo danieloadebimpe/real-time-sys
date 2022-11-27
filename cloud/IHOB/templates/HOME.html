@@ -1,0 +1,27 @@
+{% extends 'template.html' %}
+
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}" xmlns="http://www.w3.org/1999/html">
+{% endblock %}
+
+{% block body %}
+{%  csrf_token %}
+<div class="container">
+    <div class="row">
+        {% for product in product_list %}
+          <div class="col-sm-3">
+               <div class="card">
+                  <img class="card-img-top" src="{{ product.image.url }}">
+                  <div class="card-body">
+                      <p class="card-title"><small>Info:</small> {{ product.title }}</p>
+                      <p class="card-text"><small>Description: </small>{{ product.description }}</p>
+                      <p class="card-text"><small>Current Bidding Price: </small>${{product.price}}</p>
+                      <div class="card text-center"><a href="/product_page/{{ product.productID }}" class="btn btn-outline-primary">BID</a></div>
+                  </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
